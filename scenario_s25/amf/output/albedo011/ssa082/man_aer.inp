@@ -1,0 +1,166 @@
+##      Aerosol phase function parameterization
+##      1) HG_asym   - The phase function is defined by the asymmetry 
+##                     factor according to the Henyey-Greenstein 
+##                     parameterization. 
+##      2) Num_sca   - The phase function is defined numericall as a 
+##                     function of the scattering angle. This 
+##                     parameterization can only be used in "DOM" mode.
+##      3) LSE_coeff - The phase function is defined by its Legendre 
+##                     series expansion coefficients. This 
+##                     parameterization can only be used in "DOM" mode. 
+Aerosol phase function parameterization
+HG_asym
+#LSE_coeff
+
+##      Aerosol asymmetry factor (only used if 
+##      "Aerosol phase function parameterization" is set to "HG_asym")
+##
+##      First line: the number of input altitude levels 
+##                  (minimum 2 levels required)
+##      Subsequent lines: altitude in km and aerosol asymmetry parameter
+##   	
+##      The aerosol asymmetry parameter will be linearly interpolated
+##      between the input levels and extrapolated with zero above the  
+##      highest input level and below the lowest input level.
+Asymmetry factor
+2
+0.0   0.7
+60.0  0.7
+
+##      Aerosol phase function as a function of the scattering angle 
+##      (only used if "Aerosol phase function parameterization" is set 
+##      to "HG_asym")
+##
+##      First line: the number of input altitude levels 
+##                  (minimum 2 levels required)
+##      Subsequent lines: altitude in km and the name of the file 
+##                        containing the aerosol phase function as a
+##                        function of the scattering angles at specified
+##                        altitude.
+##
+##      The aerosol phase function will be linearly interpolated between 
+##      the input levels and extrapolated with zero above the highest 
+##      input level and below the lowest input level.                 
+Filenames for aerosol phase function
+2
+0.0   '../data/aerosol/test_ph_scat.dat'
+60.0  '../data/aerosol/test_ph_scat.dat'
+
+
+##      Legendre series expansion coefficients of the aerosol phase 
+##      function (only used if "Aerosol phase function parameterization" 
+##      is set to "LSE_coeff")
+##
+##      First line: the number of input altitude levels 
+##                  (minimum 2 levels required)
+##      Subsequent lines: altitude in km and the name of the file 
+##                        containing the expansion coefficients of the 
+##                        aerosol phase function aerosol.
+##
+##      The coefficients will be linearly interpolated between the input 
+##      levels and extrapolated with zero above the highest input level 
+##      and below the lowest input level.                 
+Filenames for expansion coefficients
+2
+0.0   '../data/aerosol/test_ph_coef.dat'
+60.0  '../data/aerosol/test_ph_coef.dat'
+
+
+Extinction coefficient
+47
+6.0 7.598e-06
+5.9 9.755e-06
+5.8 1.253e-05
+5.7 1.608e-05
+5.6 2.065e-05
+5.5 2.652e-05
+5.4 3.405e-05
+5.3 4.372e-05
+5.2 5.614e-05
+5.1 7.208e-05
+5.0 9.256e-05
+4.9 1.188e-04
+4.8 1.526e-04
+4.7 1.959e-04
+4.6 2.516e-04
+4.5 3.231e-04
+4.4 4.148e-04
+4.3 5.326e-04
+4.2 6.839e-04
+4.1 8.782e-04
+4.0 1.128e-03
+3.9 1.448e-03
+3.8 1.859e-03
+3.7 2.387e-03
+3.6 3.065e-03
+3.5 3.936e-03
+3.4 5.053e-03
+3.3 6.489e-03
+3.2 8.332e-03
+3.1 1.070e-02
+3.0 1.374e-02
+2.9 1.764e-02
+2.8 2.265e-02
+2.7 2.908e-02
+2.6 3.734e-02
+2.5 4.795e-02
+2.4 6.156e-02
+2.3 7.905e-02
+2.2 1.015e-01
+2.1 1.303e-01
+2.0 1.673e-01
+1.9 2.149e-01
+1.8 2.759e-01
+1.7 3.543e-01
+1.6 4.549e-01
+1.5 5.841e-01
+1.4 7.500e-01
+Absorption coefficient
+47
+6.0 1.368e-06
+5.9 1.756e-06
+5.8 2.255e-06
+5.7 2.895e-06
+5.6 3.717e-06
+5.5 4.773e-06
+5.4 6.129e-06
+5.3 7.870e-06
+5.2 1.010e-05
+5.1 1.298e-05
+5.0 1.666e-05
+4.9 2.139e-05
+4.8 2.747e-05
+4.7 3.527e-05
+4.6 4.529e-05
+4.5 5.815e-05
+4.4 7.467e-05
+4.3 9.587e-05
+4.2 1.231e-04
+4.1 1.581e-04
+4.0 2.030e-04
+3.9 2.606e-04
+3.8 3.346e-04
+3.7 4.297e-04
+3.6 5.517e-04
+3.5 7.084e-04
+3.4 9.096e-04
+3.3 1.168e-03
+3.2 1.500e-03
+3.1 1.926e-03
+3.0 2.473e-03
+2.9 3.175e-03
+2.8 4.077e-03
+2.7 5.235e-03
+2.6 6.721e-03
+2.5 8.630e-03
+2.4 1.108e-02
+2.3 1.423e-02
+2.2 1.827e-02
+2.1 2.346e-02
+2.0 3.012e-02
+1.9 3.868e-02
+1.8 4.966e-02
+1.7 6.377e-02
+1.6 8.188e-02
+1.5 1.051e-01
+1.4 1.350e-01

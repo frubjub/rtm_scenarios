@@ -1,0 +1,33 @@
+#*************************************************************************
+#************************ Height grid settings ***************************
+#*************************************************************************
+
+## 	Path to internal height grid files
+Path to altitude grid file
+'../data/net/'
+'./'
+
+## 	Number of altitude layers and altitude grid file name
+Altitude grid information
+51, 'NET_10km.DAT'
+##86, 'NET_IDOAS.DAT'
+##66, 'NET100_6.DAT'
+##101, 'NET100_2.DAT'
+##68, 'NET100_2.DAT'
+##28, 'NET_VAR.DAT'
+
+##	Height above sea level [km]
+##      Lower boundary (i.e. surface) will be set to
+##      ``Height above sea level''; atmosphere below will essentially be
+##      ``cut off``
+Height above sea level
+0.0
+#1.5
+#2.5
+
+##      If RTM-CORE is set to "DOM" than for calculation of the
+##      radiative transfer in each homogeneous layer will be used weighted
+##      optical parameters <p> = w*p(i) + (1-w)*p(i+1), where p(i) and
+##      p(i+1) parameter values on the top and bottom of the layer i.
+Weighting parameter
+0.5

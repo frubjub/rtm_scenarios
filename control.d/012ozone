@@ -1,0 +1,41 @@
+#*************************************************************************
+#************************ Ozone climatologies ****************************
+#*************************************************************************
+## 	Selection of ozone climatology:
+##      (replaces ozone profile unless "Trace gas replacement profiles"
+##      is turned on as well as temperature profile unless
+##      "Do P and T from standard profile file" is set on "f")
+##      Additional to the input below following parameters need to
+##      be specified: LATITUDE, DAY OF YEAR (except for TOMS_V7),
+##      YEAR (TOMS_V8, KNMI, TOMS_M)
+##	1) 'IUP_BREMEN' - 9 seasons, 9 latitude regions, total ozone
+##      2) 'TOMS_V7'    - 3 seasons, 9 latitude regions, total ozone
+##      3) 'TOMS_V8'    - monthly, 18 latitude regions, total ozone
+##      4) 'KNMI'       - monthly, 17 latitude regions
+##      5) 'TOMS_M'     - monthly, 18 latitude regions
+##      6) 'UGAMP'      - monthly, horizontal resolution is of 2.5 by 2.5
+##                        degrees (144 points in longitude and 73 points in
+##                        latitude from pole to pole)
+##      7) 'NONE'       - climatology block is switched off
+Ozone climatology
+NONE
+##UGAMP
+##TOMS_V8
+##IUP_BREMEN
+##KNMI
+
+##      Scale climatological profile to user-defined ozone total column
+##      (only used in KNMI and TOMS_M climatologies)
+Scale climatological profile
+t
+
+##      Ozone total column in DU (obligatory parameter for IUP_BREMEN,
+##      TOMS_V7, and TOMS_V8 climatologies, optionaly used to scale
+##      ozone profile from KNMI or TOMS_M climatologies)
+Ozone total column
+252.0
+
+##      Path to ozone climatology data base
+Path to ozone climatology
+'../DATA_BASES/CLIMATOLOGY/OZONE'
+

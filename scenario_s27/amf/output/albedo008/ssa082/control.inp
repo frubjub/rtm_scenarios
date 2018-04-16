@@ -1,0 +1,683 @@
+#*************************************************************************
+#*****************  Verbosity level of screen output  ********************
+#*************************************************************************
+##	Using this flag the verbosity level of the program is controlled,
+##      i.e., how much information will be written into the standard
+##      output (screen) and auxiliary files. The flag consist of two
+##      characters determining the logging level for the formard model
+##      and retrieval block respectively.
+##      The possible selections are as follows:
+##	1) 'N' - no screen output
+##	2) 'R' - reduced screen output
+##	3) 'S' - standard screen output
+##	4) 'E' - extended screen output
+##	5) 'D' - debugging mode
+Verbosity level
+DD
+
+#*************************************************************************
+#************************ Overall algorithm control **********************
+#*************************************************************************
+##      Type of radiative transfer model
+##      1) 'spher_scat'   - scattered light in a spherical atmosphere
+##                          (Only HG type of aerosol phase function is
+##                          implemented in this node)
+##      2) 'pp_scat'      - scattered light in a plane-parallel atmosphere
+##                          (only has an effect if "RTM-CORE" is set to
+##                          "DOM", "FEL", or "FID", otherwise automatically
+##                          switched to 'ps_scat')
+##      3) 'ps_scat'      - scattered light in a pseudo-spherical
+##                          atmosphere, i.e., attenuation of the direct
+##                          solar light is calculated in a spherical
+##                          atmosphere and all scattering are considered
+##                          in a plane-parallel atmosphere (only has an
+##                          effect if "RTM-CORE" is set to "FID" or "CDI",
+##                          otherwise automatically switched to 'pp_scat')
+##      4) 'transmission' - solar radiation transmitted through a
+##                          spherical atmosphere
+RTM_TYPE
+spher_scat
+#ps_scat
+#transmission
+
+##      Numerical method to solve the radiative transfer equation:
+##      1) 'DOM' - Discrete ordinate
+##      2) 'CDI' - Spherical model is run in pseudo-spherical mode
+##                 (Only HG type of aerosol phase function, no clouds)
+##      3) 'ASYMP' - asymptotic intensity at TOA: in non-spherical
+##                   modes if "Clouds present" is .true. only.
+##	(see also control_ps.inp for'DOM' and 'ASYMP' modes)
+RTM-CORE
+DOM
+
+##      Type of calculations
+##      1) 'int'   - intensity/radiance
+##      2) 'wf'    - intensity/radiance and weighting functions
+##      3) 'amf'   - air mass factors and local vertical columns
+##      4) 'slant_col' - slant columns and local vertical columns
+##      5) 'block_amf' - height resolved air mass factors
+##      6) 'flux'  - actinic flux, upwelling and downwelling fluxes,
+##                   and direct solar radiance as a function of altitude
+##      7) 'vod'   - vertical/slant optical depth
+##         (in spherical mode: vertical optical depth for gases only)
+##         (only one LOS/SZA/SAA must be selected in control_geom.inp)
+##      8) 'raman' - intensity/radiance including Raman scattirig,
+##                   ring spectrum
+##      9) 'spher_alb' - spherical albedo
+##     10) 'ret'    - perform retrieval
+##         (see control_ret.inp for retrieval parameteres)
+##     11) 'num_pert' - weighting function for a selected atmospheric
+##                      parameter using numerical perturbation approach
+RTM Mode
+amf
+
+##	If true: file 'intensity.dat' will contain absolute radiance
+##      instead of sun-normalized intensity, additional, 'irradiance.dat'
+##      file containing solar spectrum is supplied.
+##      All fluxes are written out in absolute units as well.
+##      There will be NO OUTPUT for sun-normalized radiance/fluxes !!!
+##      Date or day of year must be specified.
+Absolute radiance
+f
+
+##	The number of iterations (has only an effect if "RTM-CORE"
+##      control parameter is set to "CDI")
+The number of iterations
+2
+
+##      Parallel execution for multiple wavelengths (has only an effect
+##      if "RTM-CORE" control parameter is set to "CDI")
+Parallel wavelength loop
+t
+
+
+#*************************************************************************
+#************************* Trace gas selection ***************************
+#*************************************************************************
+#  NOTE: O2 - CH4 require line-by-line calculations OR ESFT calculations
+#*************************************************************************
+Trace gas selection - forward model
+O3   NO2  SO2  ClO  BrO  NO3 HCHO OClO  O4   O2   H2O  CO2  N2O  CO   CH4
+t,   t,   t,   f,   f,   f,   f,   f,   t,   f,   f,   f,   f,   f,   f
+#t,   t,   f,   f,   t,   f,   f,   t,   t,   f,   f,   f,   f,   f,   f
+
+##      Trace gas for AMF calculations ('amf' mode only)
+Trace gas selection - AMF calculation
+NO2
+O3
+O4
+H2O
+SO2
+
+
+#************************ Weighting functions ****************************
+#*************************************************************************
+##      Trace gas selection for weighting functions	
+Trace gas selection - weighting functions
+O3   NO2  SO2  ClO  BrO  NO3 HCHO OClO  O4   O2   H2O  CO2  N2O  CO   CH4
+t,   t,   t,   f,   f,   f,   f,   f,   t,   f,   f,   f,   f,   t,   t
+
+##	Weighting functions for other parameters
+##        ANPS => average number of photon scattering events
+##        Elev => surface elevation
+##        TH   => tangent height
+Other parameters - weighting functions
+Rayleigh  aerosols  clouds  albedo  ANPS  Press  Temp  Elev  TH
+   t         t        f       t      f      t     f     f     f
+
+##      If RTM Mode is set to 'wf' or 'ret' the weighting functions can be
+##      calculated for relative 'rel' or absolute 'abs' variation of the
+##      all atmospheric parameters.
+Absolute or relative WF
+abs
+
+##      If RTM Mode is set to "wf" and RTM-CORE to "DOM"
+##      than weighting functions can be integrated over each layer
+##      analytically ("analytic"), numerically ("numeric") or calculated
+##      without integration ("nointegr")
+WF integration mode
+numeric
+
+##      Normalization of the weighting functions
+##      (has only an effect RTM Mode is set to "wf" and RTM-CORE to "DOM")
+##      1) 'standard' - the weighting functions refer to a change of an
+##                      atmospheric parameter within altitude layers
+##                      defined by the input grid
+##      2) 'unified'  - the weighting functions are normalized to the
+##                      vertical extension of the corresponding altitude
+##                      level, i.e., they refer to a change of an
+##                      atmospheric parameter within 1 km altitude layers
+WF normalization
+standard
+
+##      ***** Only relevant if "RTM Mode" is set to 'num_pert' *******
+##      Lower and upper boundaries [km] of the altitude range where
+##      the weighting function will be calculated
+Lower and upper boundary for WF calculation
+0.0  12.0
+
+
+#************************ Wavelength settings ****************************
+#*************************************************************************
+
+##      Wavelength intervals (spectral windows)
+##      175.4386 nm =< wl =< 2400 nm, unpredictable results otherwise
+##      (Assumption: no overlap, ordered by wavelength)
+##      First line: Number of spectral windows
+##      Following lines: one line specifying one window
+##      First entry ("1" or "2") determines how the third entry will
+##      be interpreted. The following two schemes are possible:
+##      1, start wavelength [nm], number of wavelength, stepsize [nm]
+##   	   or
+##      2, start wavelength [nm], end wavelength [nm], stepsize [nm]
+Wavelength segment info
+1
+2, 440, 440.01, 0.01
+##2, 941, 941.01, 0.01
+##2, 1121, 1124, 0.01
+##2, 1406, 1414, 0.01
+
+##1
+##2, 1956.09, 1956.11, 0.01
+##2, 1956, 1956.5, 0.11
+##2, 1955, 1957, 0.11
+##4
+##2, 249, 251, 0.24
+##2, 523.9, 526.1, 0.24
+##2, 601, 603.1, 0.24
+##2, 674, 676, 0.21
+##1
+##2, 295, 305, 0.24
+
+
+#*************************************************************************
+#************ High resolution calculations for line absorbers ************
+#*************************************************************************
+##	Selection of line absorber treatment:
+##      'esft' - exponential sum fitting
+##      'lbl'  - line-by-line calculations using HITRAN data base
+##      'off'  - spectral signature of line absorbers is ignored
+Line absorber treatment
+off
+##esft
+
+
+##      Calculate line absorbers contribution in selected windows only
+Line absorber windows
+t
+
+##	Spectral windows for line absorbers
+##      First line: Number of spectral windows
+##      Following lines: start wavelength [nm], end wavelength [nm]
+##      (Ignored if "Line absorber windows = .false.")
+##      (Ignored in line-by-line mode without convolution)
+Spectral windows for line absorbers
+1
+750.0, 780.0
+1300.0, 1600.0
+430.0, 450.0
+460.0, 470.0
+490.0, 500.0
+1910.0, 1950.0
+
+##	Path to ESFT data base
+Path to ESFT data base
+'../DATA_BASES/ESFT_HITRAN2004/'
+
+##	Do calculate ESFT radiance in anti-correlation mode
+##	(needed for mixing parameter alpha calculations)
+##	Default: should be false ###
+Do esft anti correlation
+f
+
+##      Spectrocopic line parameter filename
+Spectroscopic line parameter filename
+'../DATA_BASES/SPECTRA/hitran2004_200_2500_FV2_All6.dat'
+
+##      Isotopic line parameter filename
+Isotopic line parameter filename
+'../DATA_BASES/SPECTRA/hitran96_isotopic_data.dat'
+
+##	Line wing cut-off wavenumber [cm-1]
+Line wing cut-off wavenumber
+100.0
+
+
+#*************************************************************************
+#************ Slit function convolution and pixel averaging **************
+#*************************************************************************
+##      Intensity and radiance slit function convolution
+Do convolution
+f
+
+##      Convolution for spectral points with non-zero line absorber
+##      contributions only
+##      (used in ESFT mode or if "Line absorber windows" = .true.)
+Convolution for line absorber only
+f
+
+##	Slit function type (1="Gaussian", 2="Simple Hyperbolic")
+Slit function type
+1
+
+##      Slit function HWHM [nm] for each spectral segment
+Slit function HWHM
+0.27, 0.74, 0.74
+0.225, 0.3
+
+##      Slit function wing cut-off (HWHM number)
+Slit function wing cut-off
+2
+
+##      Internal wavelength step for convolution [nm]
+##      Unused if wavelength step is predefined by ESFT grid
+Internal wavelength step
+0.001D0
+
+
+#*************************************************************************
+#************************ Aerosol settings *******************************
+#*************************************************************************
+
+##	If true aerosols will be included
+Do aerosols
+t
+
+##      Aerosol parameterization selection
+##      'st' - SCIATRAN (aerosol scenario input file: 'scia_aer.inp')
+##      'lt' - LOWTRAN  (aerosol scenario input file: 'low_aer.inp')
+##      'mn' - Manually (aerosol scenario input file: 'man_aer.inp')
+Aerosol parameterization type
+mn
+
+##	Path to aerosol data base
+##      (needed for  SCIATRAN aerosol parameterization only)
+Path to aerosol data base
+'../DATA_BASES/AEROSOLS/'
+
+##	Aerosol phase function selection
+##      1 = Mie
+##	2 = Henyey-Greenstein
+##	(Note: 1 is only possible for SCIATRAN parameterization)
+Aerosol phase function index
+2
+
+##	Use delta-M "D-MA" or delta-fit "D-FA" approximation,
+##      or all "all" Legendre  moments (non-spherical modes only)?
+Aerosol delta-M approximation
+all
+D-FA
+D-MA
+
+##      Truncation index for delta-M approximation (determines the
+##      phase function term after which the renormalized Legendre
+##      series will be truncated)
+##      NOTE: MUST BE SMALLER THAN 'Number of Legendre moments'.
+Truncation index for delta-M approximation
+12
+48
+
+#      Aerosol optical depth scaling parameter:
+#      for each wavelength aerosol scattering and absorption coefficients
+#      will be multiplied by this scaling factor
+Aerosol scaling parameter
+0.33333
+
+
+#*************************************************************************
+#************************ Surface settings *******************************
+#*************************************************************************
+
+##	Wavelength independent surface albedo
+Albedo
+0.08
+
+##	Spectral albedo from data base ?
+Do spectral albedo from data base
+f
+
+##	Spectral albedo filename
+Spectral albedo filename
+'../DATA_BASES/ALBEDO/albedo_rg_soil.dat'
+
+##	Bidirectional reflectance distribution function
+##      (spherical mode only)
+BRDF flag
+f
+
+##	Surface type (spruce, sparse erectophile, tropical forest,
+##      plowed field, grasses, broad leaf crops, Savannah, leaf forest,
+##      Conifers, hardwood forest winter, loam soil, irrigated wheat,
+##      bright, dark, snow, ocean)
+Surface type
+Savannah
+
+##	Spectral range for BRDF parameters (UV or IR)
+BRDF spectral range
+UV
+
+
+#*************************************************************************
+#************************ Height grid settings ***************************
+#*************************************************************************
+
+## 	Path to internal height grid files
+Path to altitude grid file
+'../steve_scenarios/'
+'../data/net/'
+'./'
+
+## 	Number of altitude layers and altitude grid file name
+Altitude grid information
+51, 'NET_10km.DAT'
+##86, 'NET_IDOAS.DAT'
+##66, 'NET100_6.DAT'
+##101, 'NET100_2.DAT'
+##68, 'NET100_2.DAT'
+##28, 'NET_VAR.DAT'
+
+##	Height above sea level [km]
+##      Lower boundary (i.e. surface) will be set to
+##      ``Height above sea level''; atmosphere below will essentially be
+##      ``cut off``
+Height above sea level
+1.4
+#0.0
+#2.5
+
+##      If RTM-CORE is set to "DOM" than for calculation of the
+##      radiative transfer in each homogeneous layer will be used weighted
+##      optical parameters <p> = w*p(i) + (1-w)*p(i+1), where p(i) and
+##      p(i+1) parameter values on the top and bottom of the layer i.
+Weighting parameter
+0.5
+#*************************************************************************
+#************************ Profile information ****************************
+#*************************************************************************
+
+##      Akima or linear interpolation of profiles ?
+##	(Note: if extrapolation is required constant trace
+##      gas VMR is assumed and linear height dependence of T and log(P);
+##      only the last two points will be used for P and T extrapolation.)
+Do profiles akima interpolation
+f
+
+##	Standard profile scenario file for "normal absorbers"
+##      (O3   NO2  SO2  ClO  BrO  NO3 HCHO OClO  O4)
+Standard profile scenario file name
+'../DATA_BASES/PROFILES/mon12lat05n.mcl'
+'../DATA_BASES/PROFILES/mon12lat65s.mcl'
+'mcl_ugamp_20051217_lat65S_lon29E.dat'
+
+#	Standard profile scenario file for "line absorbers"
+##      (O2   H2O  CO2  N2O  CO   CH4)
+Standard profile scenario for line absorbers
+'../DATA_BASES/PROFILES/usstandard.dat'
+
+##	Take pressure and temperature profiles from
+##	standard profile scenario file ?
+Do P and T from standard profile file
+t
+
+##	Replacement profiles for pressure and temperature
+##	Only used if "Do P and T from standard profile file" = .false.
+##      Input format: filename, column numbers for altitude grid,
+##              presure and tempereture
+Pressure and temperature file name
+'/home/scia/alex/data/SCIA_LIMB/NO_POINTING_CORRECTION/UV-Vis/Orbit19762/Orb19762_St14_Az1_0.PT', 2, 3, 4
+'/hb/alex/data/SCIA_LIMB/7004-69_14_ecmwf_pt.dat', 2, 3, 4
+'../DATA_BASES/PROFILES/mon08lat45s.mpi', 2, 3, 4
+
+##	Replacement profiles for trace gases
+##      Input format:
+##         first line: the number of replacement profiles
+##         other lines (each line define a profile for one trace gas:
+##         filename, gas label (e.g. NO2), units ("conc" or "vmr"),
+##         column numbers for altitude grid and concetration/vmr
+##
+Trace gas replacement profiles
+1
+'../steve_scenarios/scenario_s27/vmr_profile/27.txt', 'NO2', 'vmr', 1, 2
+'../DATA_BASES/PROFILES/mon08lat35s.mpi', 'NO2', 'vmr', 2, 6
+'../data/profiles/profile_2_inv.dat', 'NO2', 'conc', 1, 2
+'DATA_OUT/profile_1.dat', 'BRO', 'conc', 1, 2
+'bro_conc.tmp', 'BRO', 'conc', 1, 2
+'../data/profiles/conc_const.o3', 'O3', 'conc', 1, 2
+'../DATA_BASES/PROFILES/mon07lat45n.mpi', 'NO2', 'vmr', 2, 6
+
+#*************************************************************************
+#************************** Date and geolocation *************************
+#*************************************************************************
+##	Date or day of the year (1 means: 1.Jan.)
+##	First line: specification type
+##                  ("DMY" - day-month-year, "DOY" - day of year)
+##      Second line
+##             in DMY mode: DD.MM.YYYY (wiil be read as string)
+##             in DOY mode: day of year, year (wiil be read as integers)
+Date
+'DMY'
+09.08.2007
+'DOY'
+350, 2002
+
+##	Latitude and longitude (two comma or space separated values)
+##      The first input value is interpreted as the latitude and
+##      the second as the longitude
+##	Latitude [deg]: -90.0 (South pole) to +90.0 (North pole)
+##	(must not be equal to -90.0 or +90.0)
+##	Longitude [deg]: +0.0 to +360.0
+Latitude & longitude
+-26.5, 26.25 
+
+#*************************************************************************
+#************************ Ozone climatologies ****************************
+#*************************************************************************
+## 	Selection of ozone climatology:
+##      (replaces ozone profile unless "Trace gas replacement profiles"
+##      is turned on as well as temperature profile unless
+##      "Do P and T from standard profile file" is set on "f")
+##      Additional to the input below following parameters need to
+##      be specified: LATITUDE, DAY OF YEAR (except for TOMS_V7),
+##      YEAR (TOMS_V8, KNMI, TOMS_M)
+##	1) 'IUP_BREMEN' - 9 seasons, 9 latitude regions, total ozone
+##      2) 'TOMS_V7'    - 3 seasons, 9 latitude regions, total ozone
+##      3) 'TOMS_V8'    - monthly, 18 latitude regions, total ozone
+##      4) 'KNMI'       - monthly, 17 latitude regions
+##      5) 'TOMS_M'     - monthly, 18 latitude regions
+##      6) 'UGAMP'      - monthly, horizontal resolution is of 2.5 by 2.5
+##                        degrees (144 points in longitude and 73 points in
+##                        latitude from pole to pole)
+##      7) 'NONE'       - climatology block is switched off
+Ozone climatology
+NONE
+##UGAMP
+##TOMS_V8
+##IUP_BREMEN
+##KNMI
+
+##      Scale climatological profile to user-defined ozone total column
+##      (only used in KNMI and TOMS_M climatologies)
+Scale climatological profile
+t
+
+##      Ozone total column in DU (obligatory parameter for IUP_BREMEN,
+##      TOMS_V7, and TOMS_V8 climatologies, optionaly used to scale
+##      ozone profile from KNMI or TOMS_M climatologies)
+Ozone total column
+252.0
+
+##      Path to ozone climatology data base
+Path to ozone climatology
+'../DATA_BASES/CLIMATOLOGY/OZONE'
+
+#*************************************************************************
+#************** Photochemistry (in spherical geometry only) **************
+#*************************************************************************
+##      If true: solar zenith angle dependent vertical distributions
+##      of photochemically active species will be used in RTM instead
+##      of constant profiles (photochemical data base is not a part
+##      of SCIATRAN, solar zenith angle dependend vertical distributions
+##      used in this section have to be provided by user).
+Photochemical calculations
+f
+
+##      Total number of photochemically active species to be considered
+Number of photochemically active species
+2
+
+##      Photochemically active species to be considered
+Trace gas selection - photochemistry
+oclo
+bro
+
+##     Altitude grid files for photochemically active species
+Altitude grids for photochemically active species
+'../data/OCLO/oclo_grid_model.dat'
+'../data/OCLO/oclo_grid_model.dat'
+'/home/scia/alex/data/Rich/ri_1.dat'
+
+##     Solar zenith angle dependent vertical profiles for
+##     photochemically active species
+Profiles for photochemically active species
+'../data/OCLO/OClO_260103_60N_250_albedo08_4xCLy_dens.dat_test_1'
+'../data/OCLO/OClO_260103_60N_250_albedo08_4xCLy_dens.dat_test'
+'../data/OCLO/OClO_260103_60N_250_albedo08_4xCLy_dens.dat'
+'/home/scia/alex/data/Rich/bro_pm_1.dat'
+
+##     Replace tropospheric concentrations of photochemically active
+##     species (values from the main profile /non-photochemical/ are
+##     used in the troposphere rather than values predicted by a
+#      photochemical model)
+Replace tropospheric concentrations
+f, f
+
+##     Tropopause height in km (concentrations of photochemically
+##     active species below this altitude will be replaced if
+##     "Replace tropospheric concentrations" is set on "true", has
+##     no effect otherwise)
+Tropopause height
+10
+
+##     Use constant profile from photochemical data base
+##     (a profile at a fixed solar zenith angle as selected
+##     below will be used in the entire atmosphere)
+Use constant profile
+f, f
+
+##     Solar zenith angle for constant profile
+##     (solar zenith angle used to select /intepolate if necessary/
+##     a particular profile from the photochemical data base, only used
+##     if one of the flags for "Use constant profile" is set to "true")
+Solar zenith angle for constant profile
+75
+
+#*************************************************************************
+#************************ Clouds *****************************************
+#*************************************************************************
+##	Clouds general settings in the cloud.inp
+##	(non-spherical modes only)
+Clouds present?
+f
+
+#*************************************************************************
+#************************ X-section spectra ******************************
+#*************************************************************************
+
+##	Trace gas X-section files directory
+X-section path
+'../DATA_BASES/SPECTRA/'
+
+#*************************************************************************
+#************************ Flux calculations ******************************
+#*************************************************************************
+##      Lower and upper boundaries [km] of flux output
+Lower and upper boundary of flux results
+0.0  90.0
+
+#*************************************************************************
+#***************************** Irradiance ********************************
+#*************************************************************************
+##	Filename for user provided solar spectrum
+Filename user provided solar spectrum
+'../data/spectra/SCIA_solar_20061006_184810_D0_24058.dat'
+'../data/spectra/KUR_convolved_Ch34.DAT'
+'../data/spectra/KUR_001.ASC'
+'../DATA_BASES/SPECTRA/thkur.dat.gpp'
+'../DATA_BASES/SPECTRA/thkur.dat.gpp'
+
+#*************************************************************************
+#************************ Optional geolocation specification *************
+#*************************************************************************
+
+## 	Do specification of spectral albedo, surface elevation,
+##      clouds, and MPI profile file (and ONLY this profile file#)
+##	by geolocation and day of the year.
+##      Overall climatology/geolocation on/off flag
+##      Note: if corresponding data bases (CLIMATOLOGY sub directory
+##	      and MPI data base (mon*.mpi) in PROFILES sub directory)
+##            not present this flag must be .FALSE. #
+##	Note: all modified control.inp settings are written to
+##	      control_climatology.inp
+Do specification by geolocation
+f
+
+##	Stop after generating control_climatology.inp
+##	control_climatology.inp contains all GOMETRAN control.inp input
+##	variables modified if "Do specification by geolocation"=.true.
+##	(No radiative transfer calculations will be done.)
+Stop after generating control_climatology.inp
+f
+
+##	Latitude interpolation of profiles (MPI only)
+##	If false: uses just one file from the PROFILES sub directory
+##                corresponding to the selected latitude (and month)
+##	If true:  generates a new profile file in the current directory
+##	          for the selected day (month) but interpolated by
+##	          latitude
+Do profile latitude interpolation
+f
+
+##	Path to climatology data base
+Path to climatology data base
+'../DATA_BASES/CLIMATOLOGY/'
+
+
+#*************************************************************************
+#************************ Rayleigh scattering settings *******************
+#*************************************************************************
+
+##	Selection of Rayleigh scattering cross section formula
+##	(1=Rozanov,2=Edlen,(3=Stammes removed#),4=Brassol,5=SAO,6=Nicolet,
+##	7=Bates)
+##      (Note: temperature weighting functions require Rozanov or
+##	Bates formula#)
+##	(Note: Bates formula: Rayleigh cross will only correspond
+##	to the values given by Bates if
+##	"Rayleigh depolarisation wavelength dependent ?"=.true.
+##	and the wavelength dependent depolarisation ratio corresponds
+##	to the values as stored in file "bates_depol.dat")
+Rayleigh scattering index
+7
+
+##	Rayleigh depolarisation factor for Rayleigh phase function:
+##	wavelength dependent or not ?
+##	(If true: data will be read from file specified below,
+##	if false: constant "Rayleigh depolarisation" specified
+##	below will be used)
+Rayleigh depolarisation wavelength dependent ?
+f
+
+##	Rayleigh depolarisation factor for Rayleigh phase function:
+##	file containing wavelength dependent depolarisation values
+Rayleigh depolarisation filename
+'../DATA_BASES/SPECTRA/bates_depol_raman.dat'
+
+##	Rayleigh depolarisation factor for Rayleigh phase function
+Rayleigh depolarisation value
+0.0295
+
+##     Rayleigh scattering depletion factor
+##     If true:  Rayleigh scattering coeff. will be divided by this factor
+Rayleigh scattering depletion
+f  300000
+

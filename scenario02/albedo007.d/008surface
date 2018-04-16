@@ -1,0 +1,33 @@
+#*************************************************************************
+#************************ Surface settings *******************************
+#*************************************************************************
+
+##	Wavelength independent surface albedo
+Albedo
+0.07
+
+##	Spectral albedo from data base ?
+Do spectral albedo from data base
+f
+
+##	Spectral albedo filename
+Spectral albedo filename
+'../DATA_BASES/ALBEDO/albedo_rg_soil.dat'
+
+##	Bidirectional reflectance distribution function
+##      (spherical mode only)
+BRDF flag
+f
+
+##	Surface type (spruce, sparse erectophile, tropical forest,
+##      plowed field, grasses, broad leaf crops, Savannah, leaf forest,
+##      Conifers, hardwood forest winter, loam soil, irrigated wheat,
+##      bright, dark, snow, ocean)
+Surface type
+Savannah
+
+##	Spectral range for BRDF parameters (UV or IR)
+BRDF spectral range
+UV
+
+

@@ -1,0 +1,61 @@
+#*************************************************************************
+#************** Photochemistry (in spherical geometry only) **************
+#*************************************************************************
+##      If true: solar zenith angle dependent vertical distributions
+##      of photochemically active species will be used in RTM instead
+##      of constant profiles (photochemical data base is not a part
+##      of SCIATRAN, solar zenith angle dependend vertical distributions
+##      used in this section have to be provided by user).
+Photochemical calculations
+f
+
+##      Total number of photochemically active species to be considered
+Number of photochemically active species
+2
+
+##      Photochemically active species to be considered
+Trace gas selection - photochemistry
+oclo
+bro
+
+##     Altitude grid files for photochemically active species
+Altitude grids for photochemically active species
+'../data/OCLO/oclo_grid_model.dat'
+'../data/OCLO/oclo_grid_model.dat'
+'/home/scia/alex/data/Rich/ri_1.dat'
+
+##     Solar zenith angle dependent vertical profiles for
+##     photochemically active species
+Profiles for photochemically active species
+'../data/OCLO/OClO_260103_60N_250_albedo08_4xCLy_dens.dat_test_1'
+'../data/OCLO/OClO_260103_60N_250_albedo08_4xCLy_dens.dat_test'
+'../data/OCLO/OClO_260103_60N_250_albedo08_4xCLy_dens.dat'
+'/home/scia/alex/data/Rich/bro_pm_1.dat'
+
+##     Replace tropospheric concentrations of photochemically active
+##     species (values from the main profile /non-photochemical/ are
+##     used in the troposphere rather than values predicted by a
+#      photochemical model)
+Replace tropospheric concentrations
+f, f
+
+##     Tropopause height in km (concentrations of photochemically
+##     active species below this altitude will be replaced if
+##     "Replace tropospheric concentrations" is set on "true", has
+##     no effect otherwise)
+Tropopause height
+10
+
+##     Use constant profile from photochemical data base
+##     (a profile at a fixed solar zenith angle as selected
+##     below will be used in the entire atmosphere)
+Use constant profile
+f, f
+
+##     Solar zenith angle for constant profile
+##     (solar zenith angle used to select /intepolate if necessary/
+##     a particular profile from the photochemical data base, only used
+##     if one of the flags for "Use constant profile" is set to "true")
+Solar zenith angle for constant profile
+75
+

@@ -1,0 +1,51 @@
+#*************************************************************************
+#************************ Scattering mode selection **********************
+#*************************************************************************
+## 	Selection of scattering mode:
+##
+##	1) 'ms'       - fully multiple scattering treatment
+##      2) 'ss'       - single scattering mode (in non-spherical
+##	                modes except for "RTM-CORE" set to "CDI":
+##                      only implemented for satellite geometry,
+##                      no flux calculations)
+##                      (only for HG type of aerosol phase functions)
+##                      (at present, in cloud free atmosphere only)
+##      3) 'wf_ss'    - single scattering weighting functions, fully
+##                      multiple scatterig treatment for intensities
+##	                (implemented in spherical mode only, has no
+##                       effect in pseuo-spherical mode)
+##	4) 'ss_ms' -    single scattering mode for both intensities and
+##                      weighting functions at wavelengths shorter than
+##	                "SS/MS wavelength boundary", and fully multiple
+##                      scattering treatment at longer wavelengths
+##	                (in non-spherical modes except for "RTM-CORE"
+##	                set to "CDI": only implemented for satellite
+##                      geometry, no flux calculations)
+##                      (at present, in cloud free atmosphere only)
+##                      (only for HG type of aerosol phase functions)
+##	5) 'wf_ss_ms' - single scattering mode weighting functions at
+##                      wavelengths shorter than
+##	                "SS/MS wavelength boundary", and fully multiple
+##                      scattering treatment at longer wavelengths,
+##                      fully multiple scatterig treatment for intensities)
+##	                (implemented in spherical mode only, has no
+##                       effect in pseuo-spherical mode)
+##	6) 'sm_wf_ss' - 'ss_ms' mode for the intensity and 'wf_ss' mode
+##                      for the weighting functions (see descriptions of 
+##                      the modes for restrictions)   
+##
+## Note: surface reflection is not considered in the single scattering mode
+Scattering mode
+ms
+##wf_ss
+##ss
+
+##	Single scattering/multiple scattering wavelength boundary
+##	SS/MS wavelength boundary [nm]
+##	(Note: only used if "Scattering mode" = "ss_ms" or "wf_ss_ms")
+##      (Single scattering below this wavelength, multiple scattering at
+##       this wavelength and above)
+SS/MS wavelength boundary
+295.0
+
+

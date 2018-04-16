@@ -1,0 +1,37 @@
+#*************************************************************************
+#************************ Optional geolocation specification *************
+#*************************************************************************
+
+## 	Do specification of spectral albedo, surface elevation,
+##      clouds, and MPI profile file (and ONLY this profile file#)
+##	by geolocation and day of the year.
+##      Overall climatology/geolocation on/off flag
+##      Note: if corresponding data bases (CLIMATOLOGY sub directory
+##	      and MPI data base (mon*.mpi) in PROFILES sub directory)
+##            not present this flag must be .FALSE. #
+##	Note: all modified control.inp settings are written to
+##	      control_climatology.inp
+Do specification by geolocation
+f
+
+##	Stop after generating control_climatology.inp
+##	control_climatology.inp contains all GOMETRAN control.inp input
+##	variables modified if "Do specification by geolocation"=.true.
+##	(No radiative transfer calculations will be done.)
+Stop after generating control_climatology.inp
+f
+
+##	Latitude interpolation of profiles (MPI only)
+##	If false: uses just one file from the PROFILES sub directory
+##                corresponding to the selected latitude (and month)
+##	If true:  generates a new profile file in the current directory
+##	          for the selected day (month) but interpolated by
+##	          latitude
+Do profile latitude interpolation
+f
+
+##	Path to climatology data base
+Path to climatology data base
+'../DATA_BASES/CLIMATOLOGY/'
+
+

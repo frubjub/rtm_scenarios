@@ -1,0 +1,49 @@
+#*************************************************************************
+#************************ Aerosol settings *******************************
+#*************************************************************************
+
+##	If true aerosols will be included
+Do aerosols
+t
+
+##      Aerosol parameterization selection
+##      'st' - SCIATRAN (aerosol scenario input file: 'scia_aer.inp')
+##      'lt' - LOWTRAN  (aerosol scenario input file: 'low_aer.inp')
+##      'mn' - Manually (aerosol scenario input file: 'man_aer.inp')
+Aerosol parameterization type
+mn
+
+##	Path to aerosol data base
+##      (needed for  SCIATRAN aerosol parameterization only)
+Path to aerosol data base
+'../DATA_BASES/AEROSOLS/'
+
+##	Aerosol phase function selection
+##      1 = Mie
+##	2 = Henyey-Greenstein
+##	(Note: 1 is only possible for SCIATRAN parameterization)
+Aerosol phase function index
+2
+
+##	Use delta-M "D-MA" or delta-fit "D-FA" approximation,
+##      or all "all" Legendre  moments (non-spherical modes only)?
+Aerosol delta-M approximation
+all
+D-FA
+D-MA
+
+##      Truncation index for delta-M approximation (determines the
+##      phase function term after which the renormalized Legendre
+##      series will be truncated)
+##      NOTE: MUST BE SMALLER THAN 'Number of Legendre moments'.
+Truncation index for delta-M approximation
+12
+48
+
+#      Aerosol optical depth scaling parameter:
+#      for each wavelength aerosol scattering and absorption coefficients
+#      will be multiplied by this scaling factor
+Aerosol scaling parameter
+1.66666
+
+

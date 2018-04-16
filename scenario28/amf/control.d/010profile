@@ -1,0 +1,54 @@
+#*************************************************************************
+#************************ Profile information ****************************
+#*************************************************************************
+
+##      Akima or linear interpolation of profiles ?
+##	(Note: if extrapolation is required constant trace
+##      gas VMR is assumed and linear height dependence of T and log(P);
+##      only the last two points will be used for P and T extrapolation.)
+Do profiles akima interpolation
+f
+
+##	Standard profile scenario file for "normal absorbers"
+##      (O3   NO2  SO2  ClO  BrO  NO3 HCHO OClO  O4)
+Standard profile scenario file name
+'../DATA_BASES/PROFILES/mon12lat05n.mcl'
+'../DATA_BASES/PROFILES/mon12lat65s.mcl'
+'mcl_ugamp_20051217_lat65S_lon29E.dat'
+
+#	Standard profile scenario file for "line absorbers"
+##      (O2   H2O  CO2  N2O  CO   CH4)
+Standard profile scenario for line absorbers
+'../DATA_BASES/PROFILES/usstandard.dat'
+
+##	Take pressure and temperature profiles from
+##	standard profile scenario file ?
+Do P and T from standard profile file
+t
+
+##	Replacement profiles for pressure and temperature
+##	Only used if "Do P and T from standard profile file" = .false.
+##      Input format: filename, column numbers for altitude grid,
+##              presure and tempereture
+Pressure and temperature file name
+'/home/scia/alex/data/SCIA_LIMB/NO_POINTING_CORRECTION/UV-Vis/Orbit19762/Orb19762_St14_Az1_0.PT', 2, 3, 4
+'/hb/alex/data/SCIA_LIMB/7004-69_14_ecmwf_pt.dat', 2, 3, 4
+'../DATA_BASES/PROFILES/mon08lat45s.mpi', 2, 3, 4
+
+##	Replacement profiles for trace gases
+##      Input format:
+##         first line: the number of replacement profiles
+##         other lines (each line define a profile for one trace gas:
+##         filename, gas label (e.g. NO2), units ("conc" or "vmr"),
+##         column numbers for altitude grid and concetration/vmr
+##
+Trace gas replacement profiles
+1
+'../steve_scenarios/scenario28/vmr_profile/28.txt', 'NO2', 'vmr', 1, 2
+'../DATA_BASES/PROFILES/mon08lat35s.mpi', 'NO2', 'vmr', 2, 6
+'../data/profiles/profile_2_inv.dat', 'NO2', 'conc', 1, 2
+'DATA_OUT/profile_1.dat', 'BRO', 'conc', 1, 2
+'bro_conc.tmp', 'BRO', 'conc', 1, 2
+'../data/profiles/conc_const.o3', 'O3', 'conc', 1, 2
+'../DATA_BASES/PROFILES/mon07lat45n.mpi', 'NO2', 'vmr', 2, 6
+

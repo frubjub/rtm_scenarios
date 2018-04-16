@@ -1,0 +1,32 @@
+#*************************************************************************
+#************ Slit function convolution and pixel averaging **************
+#*************************************************************************
+##      Intensity and radiance slit function convolution
+Do convolution
+f
+
+##      Convolution for spectral points with non-zero line absorber
+##      contributions only
+##      (used in ESFT mode or if "Line absorber windows" = .true.)
+Convolution for line absorber only
+f
+
+##	Slit function type (1="Gaussian", 2="Simple Hyperbolic")
+Slit function type
+1
+
+##      Slit function HWHM [nm] for each spectral segment
+Slit function HWHM
+0.27, 0.74, 0.74
+0.225, 0.3
+
+##      Slit function wing cut-off (HWHM number)
+Slit function wing cut-off
+2
+
+##      Internal wavelength step for convolution [nm]
+##      Unused if wavelength step is predefined by ESFT grid
+Internal wavelength step
+0.001D0
+
+

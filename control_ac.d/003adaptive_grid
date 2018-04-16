@@ -1,0 +1,71 @@
+#*************************************************************************
+#************ Adaptive grid to speed up the RTM calculations *************
+#************           (used in "DOM" mode only)            *************
+#*************************************************************************
+##      "Adaptive grid" algorithm can be used for the acceleration of
+##      numerical calculations in the combination with DOM only.
+Adaptive grid
+f
+
+##      Criteria for the optimal layering of the vertical inhomogeneous
+##      medium. Each layer where the relative variation of the optical
+##      parameters smaller than "Homogeneity criteria" will be considered
+##      as vertically homogeneous. Has only an effect if "Adaptive grid"
+##      flag is set to "t"
+Homogeneity criterion
+0.2
+
+#*************************************************************************
+#*********** Parameters for Fourier/Legandre series expansion ************
+#***********            (used in "DOM" mode only)             ************
+#*************************************************************************
+##	If true:  number of Fourier terms will be determined
+##	          automatically by "Accuracy criterium"
+##	if false: only zero'th harmonic will be taken into account
+Azimuth series flag
+t
+
+##  	Only zero'th harmonic for near nadir observation
+Do only 0th harmonic for near nadir
+t
+
+##  	Boundary for near nadir observation
+##  	If "Do only 0th harmonic for near nadir" has been set to TRUE
+##  	only first harmonic will be calculated for line-of-sight
+##  	zenith angles and solar zenith angles
+##  	between -"Near nadir definition" and +"Near nadir definition"
+Near nadir definition [deg]
+0.01
+
+##	Criterium for convergence in azimuth
+##	(determines number of Fourier terms taken into account)
+Accuracy criterion
+0.01
+0.001
+0.000005
+
+##	Number of streams (discretised zenith angles) used for
+##	approximating integrals in RTE by finite sums
+##	(Gaussian quadrature method)
+##	(Note: should be greater/equal 0.43 times
+##	       ("Number of Legendre moments" - 1))
+Number of streams
+15
+4
+30
+60
+120
+
+##	Number of terms taken into account for
+##	scattering phase function development into Legendre series
+Number of Legendre moments
+35
+10
+70
+140
+280
+
+##     If true: will be used single scattering correction algorithm.
+Single scattering correction
+t
+

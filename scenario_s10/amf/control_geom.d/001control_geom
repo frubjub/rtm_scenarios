@@ -1,0 +1,116 @@
+#*************************************************************************
+#*                                                                       *
+#*        CONTROL_GEOM.INP                                               *
+#*                                                                       *
+#*        User interface for viewing geometry and ray tracing parameters *
+#*                                                                       *
+#*        SCIATRAN -- Version 2.2                                        *
+#*        Property of Institute of Remote Sensing                        *
+#*        Prof. Dr. J.P. Burrows                                         *
+#*        University of Bremen - Germany                                 *
+#*        28334 Bremen                                                   *
+#*        P.O. Box 33 04 40                                              *
+#*        Tel.:    +49-421-218-4548                                      *
+#*        Fax.:    +49-421-218-4555                                      *
+#*        E-mail:  burrows@iup.physik.uni-bremen.de                      *
+#*                                                                       *
+#*************************************************************************
+
+##	Satellite or ground based observation mode
+##      (reflected or transmitted radiance respectively)
+Do satellite
+t
+
+##	If true atmospheric refraction will be taken into accout
+##	(not in plane-parallel geometry)
+Do refractive geometry
+t
+
+##      Type of azimuth angle selection:
+##      1) 'one' - line of sights are sequentially defined by 3 angle
+##                 values (solar zenith angle, viewing angle and azimuth
+##                 angle), i.e., the first line of sight is defined by
+##                 first values specified for the solar zenith angle,
+##                 viewing angle, and azimuth angle, the second line of
+##                 sight is defined by corresponding second values and
+##                 so on. No combinations are considered. The specified
+##                 numbers of solar zenith angles, viewing angles, and
+##      2) 'all' - line of sights defined by all possible combinations
+##                 of input angles (solar zenith angle, viewing angle
+##                 and azimuth angle) are considered.
+Angle selection mode
+all
+
+##	The number of solar zenith angles
+##      (only in 'all' anlge selection mode available, should be equal
+##       to the number of viewing angles for 'one' anlge selection mode)
+The number of solar zenith angles
+8
+
+##	Solar zenith angles in [deg]
+Solar zenith angles
+25.0 30.0 35.0 40.0 45.0 50.0 55.0 60.0 65.0
+#40.0
+# 58.31,  58.22,  58.14,  58.06,  57.97,  57.89,  57.81,  57.73,  57.64,  57.56,  57.48,  57.40,  57.31,  57.23,  57.15,  57.06,  56.98,  56.90,  56.82,  56.74
+
+##      Type of LOS definition:
+##      1) 'th' - tangent height in [km]
+##      2) 'va' - view angle in [deg]
+##      3) 'au' - automatic viewing angle selection
+##                (only in 'all' anlge selection mode available)
+##                (not recommended for ground based measurements)
+Type of LOS definition
+va
+
+##	The number of viewing angles (tangent heights)
+The number of viewing angles
+1
+
+##	Viewing angles in [deg] (not valid in automatic mode)
+##      Should be between 1.0D-5 and 90.0 deg
+##      (tangent heights in [km] should be between 1.0D-5 and  100 km)
+Viewing angles
+0.0
+#0.0 10.0
+#-2.90,  0.38,  3.67,  6.94, 10.22, 13.48, 16.80, 20.05, 23.30, 26.60, 29.89, 33.18, 36.40, 39.73, 43.00, 46.26, 49.52, 52.82, 56.06, 59.36
+#59.27
+
+##	The number of azimuth angles
+##      (only in 'all' anlge selection available, should be equal
+##      to the number of viewing angles for 'one' anlge selection mode)
+The number of azimuth angles
+1
+
+##	Azimuth angles
+Azimuth angles
+39.0 
+# -39.27,  -38.33,  -39.35,  -38.41,  -39.40,  -38.46,  -39.48,  -38.54,  -39.56,  -38.62,  -39.65,  -38.70,  -39.73,  -38.78,  -39.77,  -38.84,  -39.86,  -38.92,  -39.94,  -39.00
+
+##      Flag for user-defined output altitude
+Flag for user-defined output altitude
+t
+
+##      User-defined output altitude [km]
+User-defined output altitude
+10.0
+##6.0
+#787.47
+
+##	Earth radius in [km]
+Earth radius
+6352.6
+
+##	Field of view integration (spherical mode only)
+##      Flag for user-defined output altitude must be set on .true.
+Field of view integration
+t
+
+##      Instrument field of view size in [deg]
+##      (0.045 deg for SCIAMACHY in limb and nadir mode)
+Field of view size
+0.01
+##1.0
+
+#**************************************************************************
+#                           End of CONTROL_GEOM.INP
+#**************************************************************************

@@ -1,0 +1,18 @@
+#*************************************************************************
+#************************ Flux calculations ******************************
+#*************************************************************************
+##      Lower and upper boundaries [km] of flux output
+Lower and upper boundary of flux results
+0.0  90.0
+
+#*************************************************************************
+#***************************** Irradiance ********************************
+#*************************************************************************
+##	Filename for user provided solar spectrum
+Filename user provided solar spectrum
+'../data/spectra/SCIA_solar_20061006_184810_D0_24058.dat'
+'../data/spectra/KUR_convolved_Ch34.DAT'
+'../data/spectra/KUR_001.ASC'
+'../DATA_BASES/SPECTRA/thkur.dat.gpp'
+'../DATA_BASES/SPECTRA/thkur.dat.gpp'
+

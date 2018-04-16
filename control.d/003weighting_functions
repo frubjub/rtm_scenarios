@@ -1,0 +1,47 @@
+#************************ Weighting functions ****************************
+#*************************************************************************
+##      Trace gas selection for weighting functions	
+Trace gas selection - weighting functions
+O3   NO2  SO2  ClO  BrO  NO3 HCHO OClO  O4   O2   H2O  CO2  N2O  CO   CH4
+t,   t,   t,   f,   f,   f,   f,   f,   t,   f,   f,   f,   f,   t,   t
+
+##	Weighting functions for other parameters
+##        ANPS => average number of photon scattering events
+##        Elev => surface elevation
+##        TH   => tangent height
+Other parameters - weighting functions
+Rayleigh  aerosols  clouds  albedo  ANPS  Press  Temp  Elev  TH
+   t         t        f       t      f      t     f     f     f
+
+##      If RTM Mode is set to 'wf' or 'ret' the weighting functions can be
+##      calculated for relative 'rel' or absolute 'abs' variation of the
+##      all atmospheric parameters.
+Absolute or relative WF
+abs
+
+##      If RTM Mode is set to "wf" and RTM-CORE to "DOM"
+##      than weighting functions can be integrated over each layer
+##      analytically ("analytic"), numerically ("numeric") or calculated
+##      without integration ("nointegr")
+WF integration mode
+numeric
+
+##      Normalization of the weighting functions
+##      (has only an effect RTM Mode is set to "wf" and RTM-CORE to "DOM")
+##      1) 'standard' - the weighting functions refer to a change of an
+##                      atmospheric parameter within altitude layers
+##                      defined by the input grid
+##      2) 'unified'  - the weighting functions are normalized to the
+##                      vertical extension of the corresponding altitude
+##                      level, i.e., they refer to a change of an
+##                      atmospheric parameter within 1 km altitude layers
+WF normalization
+standard
+
+##      ***** Only relevant if "RTM Mode" is set to 'num_pert' *******
+##      Lower and upper boundaries [km] of the altitude range where
+##      the weighting function will be calculated
+Lower and upper boundary for WF calculation
+0.0  12.0
+
+

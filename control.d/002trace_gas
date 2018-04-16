@@ -1,0 +1,19 @@
+#*************************************************************************
+#************************* Trace gas selection ***************************
+#*************************************************************************
+#  NOTE: O2 - CH4 require line-by-line calculations OR ESFT calculations
+#*************************************************************************
+Trace gas selection - forward model
+O3   NO2  SO2  ClO  BrO  NO3 HCHO OClO  O4   O2   H2O  CO2  N2O  CO   CH4
+t,   t,   t,   f,   f,   f,   f,   f,   t,   f,   f,   f,   f,   f,   f
+#t,   t,   f,   f,   t,   f,   f,   t,   t,   f,   f,   f,   f,   f,   f
+
+##      Trace gas for AMF calculations ('amf' mode only)
+Trace gas selection - AMF calculation
+NO2
+O3
+O4
+H2O
+SO2
+
+

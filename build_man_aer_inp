@@ -1,0 +1,30 @@
+#!/bin/bash
+# Copyright Stephen Broccardo, 2018
+
+function build_man_aer_inp {
+	# build a man_aer.inp by concatenating the various sections
+	#
+	# $1 is the scenario
+	# $2 is the path to the man_aer.inp that we wish to build
+	# $3 is the single-scattering albedo as percent (eg: ssa100 or ssa090)
+
+	if [ -f $SCENARIO_DIR/$1/$3.d/001scattering_mode ] ; then
+		SCATTERING_MODE=$SCENARIO_DIR/$1/$3.d/001phase_function
+	else SCATTERING_MODE=$SCENARIO_DIR/man_aer.d/001phase_function ; fi
+
+	if [ -f $SCENARIO_DIR/$1/$3.d/002extinction_coeff ] ; then
+		SUBLAYERS=$SCENARIO_DIR/$1/$3.d/002extinction_coeff
+	else SUBLAYERS=$SCENARIO_DIR/man_aer.d/002extinction_coeff ; fi
+
+	if [ -f $SCENARIO_DIR/$1/$3.d/003absorption_coeff ] ; then 
+	 	ADAPTIVE_GRID=$SCENARIO_DIR/$1/$3.d/003absorption_coeff
+	else ADAPTIVE_GRID=$SCENARIO_DIR/man_aer.d/003absorption_coeff ; fi
+
+	echo "Using the following for man_aer.inp:"
+	echo $SCATTERING_MODE
+	echo $SUBLAYERS
+	echo $ADAPTIVE_GRID
+
+
+	cat $SCATTERING_MODE $SUBLAYERS $ADAPTIVE_GRID > $2
+}

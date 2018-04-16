@@ -1,0 +1,68 @@
+##      Aerosol phase function parameterization
+##      1) HG_asym   - The phase function is defined by the asymmetry 
+##                     factor according to the Henyey-Greenstein 
+##                     parameterization. 
+##      2) Num_sca   - The phase function is defined numericall as a 
+##                     function of the scattering angle. This 
+##                     parameterization can only be used in "DOM" mode.
+##      3) LSE_coeff - The phase function is defined by its Legendre 
+##                     series expansion coefficients. This 
+##                     parameterization can only be used in "DOM" mode. 
+Aerosol phase function parameterization
+HG_asym
+#LSE_coeff
+
+##      Aerosol asymmetry factor (only used if 
+##      "Aerosol phase function parameterization" is set to "HG_asym")
+##
+##      First line: the number of input altitude levels 
+##                  (minimum 2 levels required)
+##      Subsequent lines: altitude in km and aerosol asymmetry parameter
+##   	
+##      The aerosol asymmetry parameter will be linearly interpolated
+##      between the input levels and extrapolated with zero above the  
+##      highest input level and below the lowest input level.
+Asymmetry factor
+2
+0.0   0.7
+60.0  0.7
+
+##      Aerosol phase function as a function of the scattering angle 
+##      (only used if "Aerosol phase function parameterization" is set 
+##      to "HG_asym")
+##
+##      First line: the number of input altitude levels 
+##                  (minimum 2 levels required)
+##      Subsequent lines: altitude in km and the name of the file 
+##                        containing the aerosol phase function as a
+##                        function of the scattering angles at specified
+##                        altitude.
+##
+##      The aerosol phase function will be linearly interpolated between 
+##      the input levels and extrapolated with zero above the highest 
+##      input level and below the lowest input level.                 
+Filenames for aerosol phase function
+2
+0.0   '../data/aerosol/test_ph_scat.dat'
+60.0  '../data/aerosol/test_ph_scat.dat'
+
+
+##      Legendre series expansion coefficients of the aerosol phase 
+##      function (only used if "Aerosol phase function parameterization" 
+##      is set to "LSE_coeff")
+##
+##      First line: the number of input altitude levels 
+##                  (minimum 2 levels required)
+##      Subsequent lines: altitude in km and the name of the file 
+##                        containing the expansion coefficients of the 
+##                        aerosol phase function aerosol.
+##
+##      The coefficients will be linearly interpolated between the input 
+##      levels and extrapolated with zero above the highest input level 
+##      and below the lowest input level.                 
+Filenames for expansion coefficients
+2
+0.0   '../data/aerosol/test_ph_coef.dat'
+60.0  '../data/aerosol/test_ph_coef.dat'
+
+

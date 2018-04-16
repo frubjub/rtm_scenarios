@@ -1,0 +1,53 @@
+#*************************************************************************
+#************ High resolution calculations for line absorbers ************
+#*************************************************************************
+##	Selection of line absorber treatment:
+##      'esft' - exponential sum fitting
+##      'lbl'  - line-by-line calculations using HITRAN data base
+##      'off'  - spectral signature of line absorbers is ignored
+Line absorber treatment
+off
+##esft
+
+
+##      Calculate line absorbers contribution in selected windows only
+Line absorber windows
+t
+
+##	Spectral windows for line absorbers
+##      First line: Number of spectral windows
+##      Following lines: start wavelength [nm], end wavelength [nm]
+##      (Ignored if "Line absorber windows = .false.")
+##      (Ignored in line-by-line mode without convolution)
+Spectral windows for line absorbers
+1
+750.0, 780.0
+1300.0, 1600.0
+430.0, 450.0
+460.0, 470.0
+490.0, 500.0
+1910.0, 1950.0
+
+##	Path to ESFT data base
+Path to ESFT data base
+'../DATA_BASES/ESFT_HITRAN2004/'
+
+##	Do calculate ESFT radiance in anti-correlation mode
+##	(needed for mixing parameter alpha calculations)
+##	Default: should be false ###
+Do esft anti correlation
+f
+
+##      Spectrocopic line parameter filename
+Spectroscopic line parameter filename
+'../DATA_BASES/SPECTRA/hitran2004_200_2500_FV2_All6.dat'
+
+##      Isotopic line parameter filename
+Isotopic line parameter filename
+'../DATA_BASES/SPECTRA/hitran96_isotopic_data.dat'
+
+##	Line wing cut-off wavenumber [cm-1]
+Line wing cut-off wavenumber
+100.0
+
+

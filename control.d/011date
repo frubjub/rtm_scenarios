@@ -1,0 +1,24 @@
+#*************************************************************************
+#************************** Date and geolocation *************************
+#*************************************************************************
+##	Date or day of the year (1 means: 1.Jan.)
+##	First line: specification type
+##                  ("DMY" - day-month-year, "DOY" - day of year)
+##      Second line
+##             in DMY mode: DD.MM.YYYY (wiil be read as string)
+##             in DOY mode: day of year, year (wiil be read as integers)
+Date
+'DMY'
+09.08.2007
+'DOY'
+350, 2002
+
+##	Latitude and longitude (two comma or space separated values)
+##      The first input value is interpreted as the latitude and
+##      the second as the longitude
+##	Latitude [deg]: -90.0 (South pole) to +90.0 (North pole)
+##	(must not be equal to -90.0 or +90.0)
+##	Longitude [deg]: +0.0 to +360.0
+Latitude & longitude
+-26.5, 26.25 
+

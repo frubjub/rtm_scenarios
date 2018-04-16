@@ -1,0 +1,91 @@
+#!/bin/bash
+# Copyright Stephen Broccardo, 2018
+
+function build_control_inp {
+	# build a control.inp by concatenating the various sections
+	# 
+	# $1 is the scenario
+	# $2 is the albedo
+	# $3 is the path to control.inp that we wish to generate
+	# $4 chooses amf or block_amf
+
+	if [ -f $SCENARIO_DIR/$1/$4/control.d/001algorithm ] ; then
+		ALGORITHM=$SCENARIO_DIR/$1/$4/control.d/001algorithm
+	else ALGORITHM=$SCENARIO_DIR/control.d/001algorithm ; fi
+	if [ -f $SCENARIO_DIR/$1/$4/control.d/002trace_gas ] ; then
+		TRACEGAS=$SCENARIO_DIR/$1/$4/control.d/002trace_gas
+	else TRACEGAS=$SCENARIO_DIR/control.d/002trace_gas ; fi
+	if [ -f $SCENARIO_DIR/$1/$4/control.d/003weighting_functions ] ; then 
+	 	WEIGHTFUNCS=$SCENARIO_DIR/$1/$4/control.d/003weighting_functions
+	else WEIGHTFUNCS=$SCENARIO_DIR/control.d/003weighting_functions ; fi
+	if [ -f $SCENARIO_DIR/$1/$4/control.d/004wavelength ] ; then
+		WAVELENGTH=$SCENARIO_DIR/$1/$4/control.d/004wavelength
+	else WAVELENGTH=$SCENARIO_DIR/control.d/004wavelength ; fi
+	if [ -f $SCENARIO_DIR/$1/$4/control.d/005line_absorbers ] ; then
+	 	LINE_ABSORBERS=$SCENARIO_DIR/$1/$4/control.d/005line_absorbers 
+	else LINE_ABSORBERS=$SCENARIO_DIR/control.d/005line_absorbers ; fi
+	if [ -f $SCENARIO_DIR/$1/$4/control.d/006convolution ] ; then
+		CONVOLUTION=$SCENARIO_DIR/$1/$4/control.d/006convolution
+	else CONVOLUTION=$SCENARIO_DIR/control.d/006convolution ; fi
+	if [ -f $SCENARIO_DIR/$1/$4/control.d/007aerosols ] ; then
+		AEROSOLS=$SCENARIO_DIR/$1/$4/control.d/007aerosols
+	else AEROSOLS=$SCENARIO_DIR/control.d/007aerosols ; fi
+	if [ -f $SCENARIO_DIR/$1/$2.d/008surface ] ; then
+		SURFACE=$SCENARIO_DIR/$1/$2.d/008surface
+	else SURFACE=$SCENARIO_DIR/control.d/008surface ; fi
+	if [ -f $SCENARIO_DIR/$1/$4/control.d/009height_grid ] ; then
+		HEIGHTGRID=$SCENARIO_DIR/$1/$4/control.d/009height_grid
+	else HEIGHTGRID=$SCENARIO_DIR/control.d/009height_grid ; fi
+	if [ -f $SCENARIO_DIR/$1/$4/control.d/010profile ] ; then
+		PROFILE=$SCENARIO_DIR/$1/$4/control.d/010profile
+	else PROFILE=$SCENARIO_DIR/control.d/010profile ; fi
+	if [ -f $SCENARIO_DIR/$1/$4/control.d/011date ] ; then
+	 	DATE=$SCENARIO_DIR/$1/$4/control.d/011date
+	else DATE=$SCENARIO_DIR/control.d/011date ; fi
+	if [ -f $SCENARIO_DIR/$1/$4/control.d/012ozone ] ; then
+		OZONE=$SCENARIO_DIR/$1/$4/control.d/012ozone
+	else OZONE=$SCENARIO_DIR/control.d/012ozone ; fi
+	if [ -f $SCENARIO_DIR/$1/$4/control.d/013photochemistry ] ; then
+		PHOTOCHEM=$SCENARIO_DIR/$1/$4/control.d/013photochemistry
+	else PHOTOCHEM=$SCENARIO_DIR/control.d/013photochemistry ; fi
+	if [ -f $SCENARIO_DIR/$1/$4/control.d/014clouds ] ; then
+		CLOUDS=$SCENARIO_DIR/$1/$4/control.d/014clouds 
+	else CLOUDS=$SCENARIO_DIR/control.d/014clouds ; fi
+	if [ -f $SCENARIO_DIR/$1/$4/control.d/015xsection ] ; then
+		XSECTION=$SCENARIO_DIR/$1/$4/control.d/015xsection 
+	else XSECTION=$SCENARIO_DIR/control.d/015xsection ; fi
+	if [ -f $SCENARIO_DIR/$1/$4/control.d/016flux_irradiance ] ; then
+		FLUX_IRR=$SCENARIO_DIR/$1/$4/control.d/016flux_irradiance 
+	else FLUX_IRR=$SCENARIO_DIR/control.d/016flux_irradiance ; fi
+	if [ -f $SCENARIO_DIR/$1/$4/control.d/017optional_geo ] ; then
+		OP_GEO=$SCENARIO_DIR/$1/$4/control.d/017optional_geo 
+	else OP_GEO=$SCENARIO_DIR/control.d/017optional_geo ; fi
+	if [ -f $SCENARIO_DIR/$1/$4/control.d/018rayleigh ] ; then
+		RAYLEIGH=$SCENARIO_DIR/$1/$4/control.d/018rayleigh 
+	else RAYLEIGH=$SCENARIO_DIR/control.d/018rayleigh ; fi
+
+	echo "Using the following for control.inp:"
+	echo $ALGORITHM
+	echo $TRACEGAS
+	echo $WEIGHTFUNCS
+	echo $WAVELENGTH
+	echo $LINE_ABSORBERS
+	echo $CONVOLUTION
+	echo $AEROSOLS
+	echo $SURFACE
+	echo $HEIGHTGRID
+	echo $PROFILE
+	echo $DATE
+	echo $OZONE
+	echo $PHOTOCHEM
+	echo $CLOUDS
+	echo $XSECTION
+	echo $FLUX_IRR
+	echo $PROFILE
+	echo $OP_GEO
+	echo $RAYLEIGH
+
+	cat $ALGORITHM $TRACEGAS $WEIGHTFUNCS $WAVELENGTH $LINE_ABSORBERS $CONVOLUTION \
+		$AEROSOLS $SURFACE $HEIGHTGRID $PROFILE $DATE $OZONE $PHOTOCHEM \
+		$CLOUDS $XSECTION $FLUX_IRR $OP_GEO $RAYLEIGH > $3
+}

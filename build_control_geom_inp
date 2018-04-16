@@ -1,0 +1,19 @@
+#!/bin/bash
+# Copyright Stephen Broccardo, 2018
+
+function build_control_geom_inp {
+	# build a control_geom.inp by concatenating the various sections
+	#
+	# $1 is the scenario
+	# $2 is the path to control_geom.inp that we wish to build
+	# $3 chooses between amf and block_amf
+
+	if [ -f $SCENARIO_DIR/$1/$3/control_geom.d/001control_geom ] ; then
+		CONTROL_GEOM=$SCENARIO_DIR/$1/$3/control_geom.d/001control_geom
+	else CONTROL_GEOM=$SCENARIO_DIR/control_geom.d/001control_geom ; fi
+
+	echo "Using the following for control_geom.inp:"
+	echo $CONTROL_GEOM
+
+	cat $CONTROL_GEOM > $2
+}

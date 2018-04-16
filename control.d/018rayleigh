@@ -1,0 +1,39 @@
+#*************************************************************************
+#************************ Rayleigh scattering settings *******************
+#*************************************************************************
+
+##	Selection of Rayleigh scattering cross section formula
+##	(1=Rozanov,2=Edlen,(3=Stammes removed#),4=Brassol,5=SAO,6=Nicolet,
+##	7=Bates)
+##      (Note: temperature weighting functions require Rozanov or
+##	Bates formula#)
+##	(Note: Bates formula: Rayleigh cross will only correspond
+##	to the values given by Bates if
+##	"Rayleigh depolarisation wavelength dependent ?"=.true.
+##	and the wavelength dependent depolarisation ratio corresponds
+##	to the values as stored in file "bates_depol.dat")
+Rayleigh scattering index
+7
+
+##	Rayleigh depolarisation factor for Rayleigh phase function:
+##	wavelength dependent or not ?
+##	(If true: data will be read from file specified below,
+##	if false: constant "Rayleigh depolarisation" specified
+##	below will be used)
+Rayleigh depolarisation wavelength dependent ?
+f
+
+##	Rayleigh depolarisation factor for Rayleigh phase function:
+##	file containing wavelength dependent depolarisation values
+Rayleigh depolarisation filename
+'../DATA_BASES/SPECTRA/bates_depol_raman.dat'
+
+##	Rayleigh depolarisation factor for Rayleigh phase function
+Rayleigh depolarisation value
+0.0295
+
+##     Rayleigh scattering depletion factor
+##     If true:  Rayleigh scattering coeff. will be divided by this factor
+Rayleigh scattering depletion
+f  300000
+

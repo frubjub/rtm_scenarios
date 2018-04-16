@@ -1,0 +1,198 @@
+#*************************************************************************
+#*                                                                       *
+#*        control_ac.inp                                                 *
+#*                                                                       *
+#*        User interface for algorithm control of SCIATRAN               *
+#*
+#*        This file contains input parameters controlling                *
+#*        the accuracy of the radiative transfer modelling               *
+#*                                                                       *
+#*        SCIATRAN -- Version 2.2                                        *
+#*        Property of Institute of Remote Sensing                        *
+#*        Prof. Dr. J.P. Burrows                                         *
+#*        University of Bremen - Germany                                 *
+#*        28334 Bremen                                                   *
+#*        P.O. Box 33 04 40                                              *
+#*        Tel.:    +49-421-218-4548                                      *
+#*        Fax.:    +49-421-218-4555                                      *
+#*        E-mail:  burrows@iup.physik.uni-bremen.de                      *
+#*                                                                       *
+#*************************************************************************
+
+#*************************************************************************
+#************************ Scattering mode selection **********************
+#*************************************************************************
+## 	Selection of scattering mode:
+##
+##	1) 'ms'       - fully multiple scattering treatment
+##      2) 'ss'       - single scattering mode (in non-spherical
+##	                modes except for "RTM-CORE" set to "CDI":
+##                      only implemented for satellite geometry,
+##                      no flux calculations)
+##                      (only for HG type of aerosol phase functions)
+##                      (at present, in cloud free atmosphere only)
+##      3) 'wf_ss'    - single scattering weighting functions, fully
+##                      multiple scatterig treatment for intensities
+##	                (implemented in spherical mode only, has no
+##                       effect in pseuo-spherical mode)
+##	4) 'ss_ms' -    single scattering mode for both intensities and
+##                      weighting functions at wavelengths shorter than
+##	                "SS/MS wavelength boundary", and fully multiple
+##                      scattering treatment at longer wavelengths
+##	                (in non-spherical modes except for "RTM-CORE"
+##	                set to "CDI": only implemented for satellite
+##                      geometry, no flux calculations)
+##                      (at present, in cloud free atmosphere only)
+##                      (only for HG type of aerosol phase functions)
+##	5) 'wf_ss_ms' - single scattering mode weighting functions at
+##                      wavelengths shorter than
+##	                "SS/MS wavelength boundary", and fully multiple
+##                      scattering treatment at longer wavelengths,
+##                      fully multiple scatterig treatment for intensities)
+##	                (implemented in spherical mode only, has no
+##                       effect in pseuo-spherical mode)
+##	6) 'sm_wf_ss' - 'ss_ms' mode for the intensity and 'wf_ss' mode
+##                      for the weighting functions (see descriptions of 
+##                      the modes for restrictions)   
+##
+## Note: surface reflection is not considered in the single scattering mode
+Scattering mode
+ms
+##wf_ss
+##ss
+
+##	Single scattering/multiple scattering wavelength boundary
+##	SS/MS wavelength boundary [nm]
+##	(Note: only used if "Scattering mode" = "ss_ms" or "wf_ss_ms")
+##      (Single scattering below this wavelength, multiple scattering at
+##       this wavelength and above)
+SS/MS wavelength boundary
+295.0
+
+
+#*************************************************************************
+#****************************** Sub-layers *******************************
+#*************************************************************************
+##      The number of fine grid layers per standard hieght grid layer
+##          (i.e. each layer will be devided into N sublayers)
+##                     (spherical mode only)
+The number of fine grid layers
+1
+
+##      The number of height grid layers at the start of integration line
+##      to be divided (1 - 3 recomended) (spherical mode only)
+Fine grid start
+1
+
+##      The number of height grid layers above the tangent height
+##      to be divided (1 - 3 recomended) (spherical mode only)
+Fine grid tangent
+5
+
+##      The boundary layer height (spherical mode only)
+##      Fine grid will be used in boundary layer (0 - Z km)
+##      (3 km recommended)
+Fine grid height
+3.0
+
+##      The layering of the line-of-sight for weighting function
+##      calculations, only used if:
+##                   - RTM_TYPE is set to "spher_scat"
+##                   - RTM-CORE is set to "DOM"
+##                   - RTM Mode is set to "wf" or "ret"
+##     First value (integer):
+##      the number of sub-layers along line-of-sight before tangent hight
+##     Second value (integer):
+##      the number of sub-layers along line-of-sight after tangent hight
+##     Third value (real):
+##      geometrical length of sub-layer in vertical direction
+The layering of line-of-sight
+ 10  3  0.5
+
+#*************************************************************************
+#************ Adaptive grid to speed up the RTM calculations *************
+#************           (used in "DOM" mode only)            *************
+#*************************************************************************
+##      "Adaptive grid" algorithm can be used for the acceleration of
+##      numerical calculations in the combination with DOM only.
+Adaptive grid
+f
+
+##      Criteria for the optimal layering of the vertical inhomogeneous
+##      medium. Each layer where the relative variation of the optical
+##      parameters smaller than "Homogeneity criteria" will be considered
+##      as vertically homogeneous. Has only an effect if "Adaptive grid"
+##      flag is set to "t"
+Homogeneity criterion
+0.2
+
+#*************************************************************************
+#*********** Parameters for Fourier/Legandre series expansion ************
+#***********            (used in "DOM" mode only)             ************
+#*************************************************************************
+##	If true:  number of Fourier terms will be determined
+##	          automatically by "Accuracy criterium"
+##	if false: only zero'th harmonic will be taken into account
+Azimuth series flag
+t
+
+##  	Only zero'th harmonic for near nadir observation
+Do only 0th harmonic for near nadir
+t
+
+##  	Boundary for near nadir observation
+##  	If "Do only 0th harmonic for near nadir" has been set to TRUE
+##  	only first harmonic will be calculated for line-of-sight
+##  	zenith angles and solar zenith angles
+##  	between -"Near nadir definition" and +"Near nadir definition"
+Near nadir definition [deg]
+0.01
+
+##	Criterium for convergence in azimuth
+##	(determines number of Fourier terms taken into account)
+Accuracy criterion
+0.01
+0.001
+0.000005
+
+##	Number of streams (discretised zenith angles) used for
+##	approximating integrals in RTE by finite sums
+##	(Gaussian quadrature method)
+##	(Note: should be greater/equal 0.43 times
+##	       ("Number of Legendre moments" - 1))
+Number of streams
+15
+4
+30
+60
+120
+
+##	Number of terms taken into account for
+##	scattering phase function development into Legendre series
+Number of Legendre moments
+35
+10
+70
+140
+280
+
+##     If true: will be used single scattering correction algorithm.
+Single scattering correction
+t
+
+#*************************************************************************
+#*********************** Disabled in SCIATRAN 2.2 ************************
+#*************************************************************************
+##      Angular interpolation technique:
+##            1)   'sfi' -  source function integration approach;
+##            2)   'asi' -  adjoint solution integration approach;
+##      This mode is relevant if :
+##                 "RTM-CORE" is set to 'DOM' ;
+##                 "RTM Mode" is set to 'int' ;
+##                 "RTM_TYPE" is set to 'pp_scat'
+#Angle interpolation approach
+#sfi
+
+#**************************************************************************
+#                         End of CONTROL_AC.INP
+#**************************************************************************

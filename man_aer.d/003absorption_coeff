@@ -1,0 +1,76 @@
+##      Aerosol absorption coefficient  
+##      (should be set to zero for non-absorbing aerosols)
+##      First line: the number of input levels (minim 2 levels required)
+##      Subsequent lines: altitude in km and aerosol absorption 
+##                        coefficient in km-1
+##   	
+##      The aerosol absorption coefficient will be linearly interpolated 
+##      between the input levels and extrapolated with zero above the 
+##      highest input level and below the lowest input level. 
+Absorption coefficient
+2
+0.0   0.0
+60.0  0.0
+
+#61
+#  0.60E+02      0.11E-07
+#  0.59E+02      0.12E-07
+#  0.58E+02      0.13E-07
+#  0.57E+02      0.14E-07
+#  0.56E+02      0.15E-07
+#  0.55E+02      0.16E-07
+#  0.54E+02      0.17E-07
+#  0.53E+02      0.18E-07
+#  0.52E+02      0.19E-07
+#  0.51E+02      0.20E-07
+#  0.50E+02      0.21E-07
+#  0.49E+02      0.24E-07
+#  0.48E+02      0.28E-07
+#  0.47E+02      0.32E-07
+#  0.46E+02      0.36E-07
+#  0.45E+02      0.40E-07
+#  0.44E+02      0.48E-07
+#  0.43E+02      0.56E-07
+#  0.42E+02      0.64E-07
+#  0.41E+02      0.71E-07
+#  0.40E+02      0.79E-07
+#  0.39E+02      0.96E-07
+#  0.38E+02      0.11E-06
+#  0.37E+02      0.13E-06
+#  0.36E+02      0.14E-06
+#  0.35E+02      0.16E-06
+#  0.34E+02      0.28E-06
+#  0.33E+02      0.40E-06
+#  0.32E+02      0.52E-06
+#  0.31E+02      0.64E-06
+#  0.30E+02      0.71E-10
+#  0.29E+02      0.13E-09
+#  0.28E+02      0.19E-09
+#  0.27E+02      0.25E-09
+#  0.26E+02      0.32E-09
+#  0.25E+02      0.38E-09
+#  0.24E+02      0.54E-09
+#  0.23E+02      0.83E-09
+#  0.22E+02      0.13E-08
+#  0.21E+02      0.25E-08
+#  0.20E+02      0.47E-08
+#  0.19E+02      0.80E-08
+#  0.18E+02      0.10E-07
+#  0.17E+02      0.10E-07
+#  0.16E+02      0.88E-08
+#  0.15E+02      0.73E-08
+#  0.14E+02      0.59E-08
+#  0.13E+02      0.42E-08
+#  0.12E+02      0.30E-08
+#  0.11E+02      0.21E-08
+#  0.10E+02      0.17E-04
+#  0.90E+01      0.21E-04
+#  0.80E+01      0.31E-04
+#  0.70E+01      0.51E-04
+#  0.60E+01      0.79E-04
+#  0.50E+01      0.10E-03
+#  0.40E+01      0.16E-03
+#  0.30E+01      0.25E-03
+#  0.20E+01      0.34E-03
+#  0.10E+01      0.55E-03
+#  0.00E+00      0.88E-03

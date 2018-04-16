@@ -1,0 +1,177 @@
+  ******************************************
+  ************   SCIATRAN 2.2   ************
+  ******************************************
+ 
+  ******************************************
+  ***  General settings:                    
+  ***       control.inp & control_ac.inp    
+  ******************************************
+  *** RTM_TYPE
+      --> spher_scat
+  *** RTM-CORE
+      --> DOM
+  *** RTM Mode
+      --> amf
+  *** WF integration mode
+      --> numeric
+  *** Weighting parameter
+      --> 0.5
+  *** Adaptive grid
+      --> f
+  *** Single scattering correction
+      --> f
+  *** Parallel wavelength loop
+      --> t
+  *** Absolute radiance
+      --> f
+  *** Azimuth series flag
+      --> t
+  *** Accuracy criterion
+      --> 0.01
+  *** Number of streams
+      --> 15
+  *** Number of Legendre moments
+      --> 35
+  *** Do only 0th harmonic for near nadir
+      --> t
+  *** Near nadir definition [deg]
+      --> 0.01
+  *** Scattering mode
+      --> ms
+  *** Rayleigh scattering index
+      --> 7
+  *** Rayleigh depolarisation wavelength dependent ?
+      --> f
+  *** Rayleigh depolarisation value
+      --> 0.0295
+  *** Rayleigh scattering depletion
+      --> f  300000
+  *** Trace gas selection - AMF calculation
+      --> NO2
+  *** Wavelength segment info
+      --> 1
+      --> 2, 440, 440.01, 0.01
+  *** Line absorber treatment
+      --> off
+  *** Do convolution
+      --> f
+  *** Do aerosols
+      --> t
+  *** Aerosol parameterization type
+      --> mn
+  *** Aerosol phase function index
+      --> 2
+  *** Aerosol delta-M approximation
+      --> all
+  *** Aerosol scaling parameter
+      --> 1.0
+  *** Trace gases incuded in the forward model
+      --> O3, NO2, SO2, O4 
+  *** Albedo
+      --> 0.02
+  *** Do spectral albedo from data base
+      --> f
+  *** BRDF flag
+      --> f
+  *** Date
+      --> 'DMY'
+      --> 09.08.2007
+  *** Latitude & longitude
+      --> -26.5, 26.25
+  *** Path to altitude grid file
+      --> '../data/net/'
+  *** Height above sea level
+      --> 0.0
+  *** Do profiles akima interpolation
+      --> f
+  *** Trace gas replacement profiles
+      --> 1
+      --> '../steve_scenarios/scenario_s31/vmr_profile/31.txt', 'NO2', 'vmr', 1,
+  2
+  *** Standard profile scenario file name
+      --> '../DATA_BASES/PROFILES/mon12lat05n.mcl'
+  *** Standard profile scenario for line absorbers
+      --> '../DATA_BASES/PROFILES/usstandard.dat'
+  *** Do P and T from standard profile file
+      --> t
+  *** Ozone climatology
+      --> NONE
+  *** Photochemical calculations
+      --> f
+  *** X-section path
+      --> '../DATA_BASES/SPECTRA/'
+  *** Do x-sections akima interpolation
+      --> t
+  *** Do O3 UV GOME FM
+      --> t
+  *** X-section: o3_uv, GOME FM
+      --> 'n_gometemp.vac', 235.1, 269.9
+  *** X-section: o3 UV-NIR
+      --> 5
+      --> 'O3_203K_V2_0.dat', 203
+      --> 'O3_223K_V2_0.dat', 223
+      --> 'O3_243K_V2_0.dat', 243
+      --> 'O3_273K_V2_0.dat', 273
+      --> 'O3_293K_V2_0.dat', 293
+  *** X-section: no2
+      --> 5
+      --> 'NO2_203K.dat', 203
+      --> 'NO2_223K.dat', 223
+      --> 'NO2_243K.dat', 243
+      --> 'NO2_273K.dat', 273
+      --> 'NO2_293K.dat', 293
+  *** X-section: so2
+      --> 1
+      --> 'so2hearn_gpp.dat', 999
+  *** X-section: o4
+      --> 1
+      --> 'o4green_gpp.dat', 296
+  *** The layering of line-of-sight
+      -->  10  3  0.5
+  *** The number of fine grid layers
+      --> 1
+  *** Fine grid start
+      --> 1
+  *** Fine grid tangent
+      --> 5
+  *** Fine grid height
+      --> 3.0
+  *** Do specification by geolocation
+      --> f
+ 
+  ******************************************
+  ***  Geometry settings: control_geom.inp  
+  ******************************************
+  *** Do satellite
+      --> t
+  *** Do refractive geometry
+      --> t
+  *** Angle selection mode
+      --> all
+  *** Type of LOS definition
+      --> va
+  *** The number of viewing angles
+      --> 1
+  *** The number of solar zenith angles
+      --> 8
+  *** The number of azimuth angles
+      --> 1
+  *** Viewing angles
+      --> 0.0 
+  *** Solar zenith angles
+      --> 25.0, 30.0, 35.0, 40.0, 45.0, 50.0, 55.0, 60.0 
+  *** Azimuth angles
+      --> 39.0 
+  *** Earth radius
+      --> 6352.6
+  *** Flag for user-defined output altitude
+      --> t
+  *** User-defined output altitude
+      --> 10.0
+  *** Field of view integration
+      --> t
+  *** Field of view size
+      --> 0.01
+  ******************************************
+  ***  End of SCIATRAN 2.2 logfile          
+  ******************************************

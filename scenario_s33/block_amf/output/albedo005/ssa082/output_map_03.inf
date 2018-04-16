@@ -1,0 +1,11 @@
+ #  SCIATRAN 2.2 (DOM, spherical mode)
+ #  Height resolved air mass factors: block_amf.dat
+ #  Num.; SZA, LOS angle, azimuth angle (@ Observer position); output altitude
+   1   25.00    0.00   39.00    6.00
+   2   30.00    0.00   39.00    6.00
+   3   35.00    0.00   39.00    6.00
+   4   40.00    0.00   39.00    6.00
+   5   45.00    0.00   39.00    6.00
+   6   50.00    0.00   39.00    6.00
+   7   55.00    0.00   39.00    6.00
+   8   60.00    0.00   39.00    6.00

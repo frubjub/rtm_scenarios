@@ -1,0 +1,33 @@
+#************************ Wavelength settings ****************************
+#*************************************************************************
+
+##      Wavelength intervals (spectral windows)
+##      175.4386 nm =< wl =< 2400 nm, unpredictable results otherwise
+##      (Assumption: no overlap, ordered by wavelength)
+##      First line: Number of spectral windows
+##      Following lines: one line specifying one window
+##      First entry ("1" or "2") determines how the third entry will
+##      be interpreted. The following two schemes are possible:
+##      1, start wavelength [nm], number of wavelength, stepsize [nm]
+##   	   or
+##      2, start wavelength [nm], end wavelength [nm], stepsize [nm]
+Wavelength segment info
+1
+2, 440, 440.01, 0.01
+##2, 941, 941.01, 0.01
+##2, 1121, 1124, 0.01
+##2, 1406, 1414, 0.01
+
+##1
+##2, 1956.09, 1956.11, 0.01
+##2, 1956, 1956.5, 0.11
+##2, 1955, 1957, 0.11
+##4
+##2, 249, 251, 0.24
+##2, 523.9, 526.1, 0.24
+##2, 601, 603.1, 0.24
+##2, 674, 676, 0.21
+##1
+##2, 295, 305, 0.24
+
+

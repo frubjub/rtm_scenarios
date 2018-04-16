@@ -1,0 +1,93 @@
+#*************************************************************************
+#*****************  Verbosity level of screen output  ********************
+#*************************************************************************
+##	Using this flag the verbosity level of the program is controlled,
+##      i.e., how much information will be written into the standard
+##      output (screen) and auxiliary files. The flag consist of two
+##      characters determining the logging level for the formard model
+##      and retrieval block respectively.
+##      The possible selections are as follows:
+##	1) 'N' - no screen output
+##	2) 'R' - reduced screen output
+##	3) 'S' - standard screen output
+##	4) 'E' - extended screen output
+##	5) 'D' - debugging mode
+Verbosity level
+D
+
+#*************************************************************************
+#************************ Overall algorithm control **********************
+#*************************************************************************
+##      Type of radiative transfer model
+##      1) 'spher_scat'   - scattered light in a spherical atmosphere
+##                          (Only HG type of aerosol phase function is
+##                          implemented in this node)
+##      2) 'pp_scat'      - scattered light in a plane-parallel atmosphere
+##                          (only has an effect if "RTM-CORE" is set to
+##                          "DOM", "FEL", or "FID", otherwise automatically
+##                          switched to 'ps_scat')
+##      3) 'ps_scat'      - scattered light in a pseudo-spherical
+##                          atmosphere, i.e., attenuation of the direct
+##                          solar light is calculated in a spherical
+##                          atmosphere and all scattering are considered
+##                          in a plane-parallel atmosphere (only has an
+##                          effect if "RTM-CORE" is set to "FID" or "CDI",
+##                          otherwise automatically switched to 'pp_scat')
+##      4) 'transmission' - solar radiation transmitted through a
+##                          spherical atmosphere
+RTM_TYPE
+spher_scat
+#ps_scat
+#transmission
+
+##      Numerical method to solve the radiative transfer equation:
+##      1) 'DOM' - Discrete ordinate
+##      2) 'CDI' - Spherical model is run in pseudo-spherical mode
+##                 (Only HG type of aerosol phase function, no clouds)
+##      3) 'ASYMP' - asymptotic intensity at TOA: in non-spherical
+##                   modes if "Clouds present" is .true. only.
+##	(see also control_ps.inp for'DOM' and 'ASYMP' modes)
+RTM-CORE
+DOM
+
+##      Type of calculations
+##      1) 'int'   - intensity/radiance
+##      2) 'wf'    - intensity/radiance and weighting functions
+##      3) 'amf'   - air mass factors and local vertical columns
+##      4) 'slant_col' - slant columns and local vertical columns
+##      5) 'block_amf' - height resolved air mass factors
+##      6) 'flux'  - actinic flux, upwelling and downwelling fluxes,
+##                   and direct solar radiance as a function of altitude
+##      7) 'vod'   - vertical/slant optical depth
+##         (in spherical mode: vertical optical depth for gases only)
+##         (only one LOS/SZA/SAA must be selected in control_geom.inp)
+##      8) 'raman' - intensity/radiance including Raman scattirig,
+##                   ring spectrum
+##      9) 'spher_alb' - spherical albedo
+##     10) 'ret'    - perform retrieval
+##         (see control_ret.inp for retrieval parameteres)
+##     11) 'num_pert' - weighting function for a selected atmospheric
+##                      parameter using numerical perturbation approach
+RTM Mode
+amf
+
+##	If true: file 'intensity.dat' will contain absolute radiance
+##      instead of sun-normalized intensity, additional, 'irradiance.dat'
+##      file containing solar spectrum is supplied.
+##      All fluxes are written out in absolute units as well.
+##      There will be NO OUTPUT for sun-normalized radiance/fluxes !!!
+##      Date or day of year must be specified.
+Absolute radiance
+f
+
+##	The number of iterations (has only an effect if "RTM-CORE"
+##      control parameter is set to "CDI")
+The number of iterations
+2
+
+##      Parallel execution for multiple wavelengths (has only an effect
+##      if "RTM-CORE" control parameter is set to "CDI")
+Parallel wavelength loop
+t
+
+

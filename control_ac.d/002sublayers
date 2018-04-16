@@ -1,0 +1,39 @@
+#*************************************************************************
+#****************************** Sub-layers *******************************
+#*************************************************************************
+##      The number of fine grid layers per standard hieght grid layer
+##          (i.e. each layer will be devided into N sublayers)
+##                     (spherical mode only)
+The number of fine grid layers
+1
+
+##      The number of height grid layers at the start of integration line
+##      to be divided (1 - 3 recomended) (spherical mode only)
+Fine grid start
+1
+
+##      The number of height grid layers above the tangent height
+##      to be divided (1 - 3 recomended) (spherical mode only)
+Fine grid tangent
+5
+
+##      The boundary layer height (spherical mode only)
+##      Fine grid will be used in boundary layer (0 - Z km)
+##      (3 km recommended)
+Fine grid height
+3.0
+
+##      The layering of the line-of-sight for weighting function
+##      calculations, only used if:
+##                   - RTM_TYPE is set to "spher_scat"
+##                   - RTM-CORE is set to "DOM"
+##                   - RTM Mode is set to "wf" or "ret"
+##     First value (integer):
+##      the number of sub-layers along line-of-sight before tangent hight
+##     Second value (integer):
+##      the number of sub-layers along line-of-sight after tangent hight
+##     Third value (real):
+##      geometrical length of sub-layer in vertical direction
+The layering of line-of-sight
+ 10  3  0.5
+
