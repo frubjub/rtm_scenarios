@@ -1,0 +1,4 @@
+Radiative transfer scenario scripts
+Copyright Stephen Broccardo 2018
+
+This is a directory structure which contains file fragments, and the scripts to assemble them into configuration files needed to run the SCIATRAN RTM (available elsewhere). A variety of configuration files are generated to model various scenarios of AOT, SSA, vertical profile shape, surface albedo, SZA, surface elevation.
